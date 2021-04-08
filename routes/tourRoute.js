@@ -11,7 +11,8 @@ const {
    getDistance,
    getToursWithin,
    resizeTourImages,
-   uploadTourImages
+   uploadTourImages,
+   getTourBySlug
 } = require('../controllers/tourController');
 const reviewRouter = require('./reviewRoute');
 const { protect, restrictTo } = require('../controllers/authController');
@@ -33,6 +34,7 @@ router
    .route('/')
    .get(getAllTours)
    .post(protect, restrictTo('admin', 'lead-guide'), createTour);
+router.get('/:slug', getTourBySlug);
 
 router
    .route('/:id')
